@@ -1,12 +1,12 @@
 **Ku pamięci naszaklasa.pl**  
 
-Ta strona to hołd dla kultowego serwisu **naszaklasa.pl** – miejsca, które przez lata łączyło pokolenia. Chcę ocalić od zapomnienia ducha tamtych czasów i stworzyć przestrzeń, gdzie wspomnienia pozostaną żywe.  
+Ta strona to mój skromny hołd dla kultowego serwisu **naszaklasa.pl** – miejsca, które przez lata łączyło pokolenia. Jako początkujący twórca dopiero uczę się tworzenia stron, ale zależało mi, by ocalić od zapomnienia ducha tamtych czasów.  
 
-❤️ **Wszelka pomoc jest mile widziana!** Jeśli:  
-- Masz archiwalne materiały związane z naszaklasa.pl  
-- Chcesz podzielić się wspomnieniami  
-- Masz pomysł na rozwój tej inicjatywy  
+❤️ **Każda pomoc będzie nieoceniona!** Jeśli:  
+- Chcesz podzielić się wspomnieniami o naszaklasa.pl  
+- Masz archiwalne zrzuty ekranu lub materiały  
+- Potrafisz wskazać błędy lub doradzić w rozwoju strony  
 
-**Napisz do mnie** lub dołącz do projektu. Razem możemy przywrócić choć cząstkę tej wyjątkowej atmosfery!  
+**Proszę o wyrozumiałość i wsparcie** – to moje pierwsze kroki w świecie programowania. Razem możemy przywrócić choć cząstkę tej wyjątkowej atmosfery!  
 
-*"Bo przecież kiedyś to było coś więcej niż tylko Internet..."*  
+*"Dla nas to był nie tylko portal... To była cała epoka."*  
