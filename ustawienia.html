@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ustawienia konta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="ustawienia.css">
+</head>
+<body>
+    <!-- Modale -->
+    <div id="usernameModal" class="modal">
+        <div class="modal-content">
+            <h3>Zmiana nazwy użytkownika</h3>
+            <input type="text" id="newUsername" class="input-modal" placeholder="Nowa nazwa użytkownika">
+            <div class="modal-actions">
+                <button class="settings-btn" onclick="closeModal('usernameModal')">Anuluj</button>
+                <button class="settings-btn" onclick="updateUsername()">Zapisz</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <h3>Zmiana adresu email</h3>
+            <input type="email" id="newEmail" class="input-modal" placeholder="Nowy adres email">
+            <div class="modal-actions">
+                <button class="settings-btn" onclick="closeModal('emailModal')">Anuluj</button>
+                <button class="settings-btn" onclick="updateEmail()">Zapisz</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <h3>Zmiana hasła</h3>
+            <input type="password" id="currentPassword" class="input-modal" placeholder="Aktualne hasło">
+            <input type="password" id="newPassword" class="input-modal" placeholder="Nowe hasło">
+            <input type="password" id="confirmPassword" class="input-modal" placeholder="Potwierdź nowe hasło">
+            <div class="password-strength">
+                <div class="strength-bar" id="strengthBar"></div>
+            </div>
+            <div id="passwordError"></div>
+            <div class="modal-actions">
+                <button class="settings-btn" onclick="closeModal('passwordModal')">Anuluj</button>
+                <button class="settings-btn" onclick="updatePassword()">Zapisz</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="resetPasswordModal" class="modal">
+        <div class="modal-content">
+            <h3>Reset hasła</h3>
+            <input type="email" id="resetEmail" class="input-modal" placeholder="Twój adres email">
+            <div class="modal-actions">
+                <button class="settings-btn" onclick="closeModal('resetPasswordModal')">Anuluj</button>
+                <button class="settings-btn" onclick="sendResetLink()">Wyślij link resetujący</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>Potwierdź usunięcie konta</h3>
+            <p>Czy na pewno chcesz trwale usunąć swoje konto? Tej akcji nie można cofnąć.</p>
+            <div class="modal-actions">
+                <button class="settings-btn" onclick="closeModal('deleteModal')">Anuluj</button>
+                <button class="settings-btn danger" onclick="deleteAccount()">Usuń konto</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Panel boczny -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Ustawienia</h2>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i> Strona główna
+                </a>
+                <a href="czat.html" class="nav-item">
+                    <i class="fas fa-comments"></i> Czat
+                </a>
+                <a href="znajomi.html" class="nav-item">
+                    <i class="fas fa-users"></i> Znajomi
+                </a>
+                <a href="profil.html" class="nav-item">
+                    <i class="fas fa-user"></i> Profil
+                </a>
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-cog"></i> Ustawienia
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Wyloguj się
+                </a>
+            </div>
+        </div>
+        
+        <!-- Główna zawartość -->
+        <div class="content">
+            <div class="settings-header">
+                <h1>Ustawienia konta</h1>
+                <p>Zarządzaj swoimi ustawieniami konta i prywatnością</p>
+            </div>
+            
+            <div class="settings-container">
+                <!-- Sekcja bezpieczeństwa -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h2>Bezpieczeństwo</h2>
+                    </div>
+                    
+                    <div class="settings-item">
+                        <div class="item-info">
+                            <h3>Zmiana hasła</h3>
+                            <p>Zaktualizuj swoje obecne hasło na nowe</p>
+                        </div>
+                        <button class="settings-btn" onclick="openModal('passwordModal')">Zmień</button>
+                    </div>
+                    
+                    <div class="settings-item">
+                        <div class="item-info">
+                            <h3>Reset hasła</h3>
+                            <p>Ustaw nowe hasło, jeśli zapomniałeś obecnego</p>
+                        </div>
+                        <button class="settings-btn" onclick="openModal('resetPasswordModal')">Resetuj</button>
+                    </div>
+                    
+                    <div class="settings-item">
+                        <div class="item-info">
+                            <h3>Uwierzytelnianie dwuskładnikowe</h3>
+                            <p>Dodaj dodatkową warstwę bezpieczeństwa do swojego konta</p>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="twoFactorToggle" checked>
+                            <label for="twoFactorToggle"></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sekcja konta -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <i class="fas fa-user-cog"></i>
+                        <h2>Konto</h2>
+                    </div>
+                    
+                    <div class="settings-item">
+                        <div class="item-info">
+                            <h3>Zmiana nazwy użytkownika</h3>
+                            <p id="currentUsername">Aktualna nazwa: Ładowanie...</p>
+                        </div>
+                        <button class="settings-btn" onclick="openModal('usernameModal')">Edytuj</button>
+                    </div>
+                    
+                    <div class="settings-item">
+                        <div class="item-info">
+                            <h3>Adres e-mail</h3>
+                            <p id="currentEmail">Aktualny email: Ładowanie...</p>
+                        </div>
+                        <button class="settings-btn" onclick="openModal('emailModal')">Zmień</button>
+                    </div>
+                    
+                    <div class="settings-item">
+                        <div class="item-info">
+                            <h3>Usunięcie konta</h3>
+                            <p>Trwale usuń swoje konto i wszystkie dane</p>
+                        </div>
+                        <button class="settings-btn danger" onclick="openModal('deleteModal')">Usuń</button>
+                    </div>
+                </div>
+
+                <!-- Przycisk Wyloguj się -->
+                <div class="logout-container">
+                    <button class="auth-btn logout" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Wyloguj się
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="footer-content">
+            <a href="#">Polityka prywatności</a>
+            <a href="#">Regulamin</a>
+            <a href="#">Kontakt</a>
+            <a href="#">Pomoc</a>
+        </div>
+    </footer>
+
+    <script>
+        // Adres API JSON Server
+        const API_URL = 'http://localhost:3000/users';
+        let currentUser = null;
+
+        // Pobierz dane użytkownika po załadowaniu strony
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData();
+            
+            // Nasłuchiwacz siły hasła
+            document.getElementById('newPassword')?.addEventListener('input', function() {
+                checkPasswordStrength(this.value);
+            });
+        });
+
+        // Funkcja do ładowania danych użytkownika
+        async function loadUserData() {
+            const userId = getUserId();
+            if (!userId) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/${userId}`);
+                if (!response.ok) throw new Error('Błąd ładowania danych');
+                
+                currentUser = await response.json();
+                document.getElementById('currentUsername').textContent = `Aktualna nazwa: ${currentUser.name}`;
+                document.getElementById('currentEmail').textContent = `Aktualny email: ${currentUser.email}`;
+            } catch (error) {
+                console.error('Błąd:', error);
+                alert('Nie udało się załadować danych użytkownika');
+            }
+        }
+
+        // Funkcje do obsługi modalów
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            // Wyczyś�� pola przy otwieraniu modala
+            if (modalId === 'passwordModal') {
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+                document.getElementById('passwordError').textContent = '';
+                document.getElementById('strengthBar').style.width = '0%';
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Sprawdź siłę hasła
+        function checkPasswordStrength(password) {
+            const strengthBar = document.getElementById('strengthBar');
+            let strength = 0;
+            
+            if (password.length > 7) strength += 1;
+            if (password.match(/[a-z]/)) strength += 1;
+            if (password.match(/[A-Z]/)) strength += 1;
+            if (password.match(/[0-9]/)) strength += 1;
+            if (password.match(/[^a-zA-Z0-9]/)) strength += 1;
+            
+            const width = strength * 20;
+            strengthBar.style.width = `${width}%`;
+            
+            // Zmiana koloru w zależności od siły
+            if (width < 40) {
+                strengthBar.style.backgroundColor = '#ff4444';
+            } else if (width < 80) {
+                strengthBar.style.backgroundColor = '#ffbb33';
+            } else {
+                strengthBar.style.backgroundColor = '#00C851';
+            }
+        }
+
+        // Aktualizacja hasła
+        async function updatePassword() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const passwordError = document.getElementById('passwordError');
+            
+            // Walidacja
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                passwordError.textContent = 'Wszystkie pola są wymagane';
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                passwordError.textContent = 'Hasła nie są identyczne';
+                return;
+            }
+            
+            if (newPassword.length < 8) {
+                passwordError.textContent = 'Hasło musi mieć co najmniej 8 znaków';
+                return;
+            }
+            
+            // Sprawdź aktualne hasło
+            try {
+                const response = await fetch(`${API_URL}/${currentUser.id}`);
+                if (!response.ok) throw new Error('Błąd weryfikacji');
+                
+                const user = await response.json();
+                
+                if (user.password !== currentPassword) {
+                    passwordError.textContent = 'Aktualne hasło jest nieprawidłowe';
+                    return;
+                }
+                
+                // Zaktualizuj hasło
+                const updateResponse = await fetch(`${API_URL}/${currentUser.id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: newPassword })
+                });
+                
+                if (updateResponse.ok) {
+                    alert('Hasło zostało pomyślnie zmienione');
+                    closeModal('passwordModal');
+                } else {
+                    throw new Error('Błąd aktualizacji hasła');
+                }
+            } catch (error) {
+                console.error('Błąd:', error);
+                passwordError.textContent = 'Wystąpił błąd podczas zmiany hasła';
+            }
+        }
+
+        // Wysłanie linku resetującego hasło
+        async function sendResetLink() {
+            const email = document.getElementById('resetEmail').value.trim();
+            
+            if (!email) {
+                alert('Wprowadź adres email');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_URL}?email=${email}`);
+                if (!response.ok) throw new Error('Błąd weryfikacji');
+                
+                const users = await response.json();
+                
+                if (users.length === 0) {
+                    alert('Nie znaleziono użytkownika z tym adresem email');
+                    return;
+                }
+                
+                // W prawdziwej aplikacji tutaj byłby kod wysyłający email z linkiem resetującym
+                // Dla demonstracji pokażemy tylko komunikat
+                alert(`Link resetujący hasło został wysłany na adres: ${email}\n\n(Demo: W rzeczywistej aplikacji zostałby wysłany prawdziwy email)`);
+                closeModal('resetPasswordModal');
+            } catch (error) {
+                console.error('Błąd:', error);
+                alert('Wystąpił błąd podczas resetowania hasła');
+            }
+        }
+
+        // Aktualizacja nazwy użytkownika
+        async function updateUsername() {
+            const newUsername = document.getElementById('newUsername').value.trim();
+            if (!newUsername) {
+                alert('Wprowadź nową nazwę użytkownika');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/${currentUser.id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: newUsername })
+                });
+
+                if (response.ok) {
+                    currentUser.name = newUsername;
+                    document.getElementById('currentUsername').textContent = `Aktualna nazwa: ${newUsername}`;
+                    closeModal('usernameModal');
+                    alert('Nazwa użytkownika została zaktualizowana');
+                    updateLocalStorage();
+                } else {
+                    throw new Error('Błąd aktualizacji');
+                }
+            } catch (error) {
+                console.error('Błąd:', error);
+                alert('Nie udało się zaktualizować nazwy użytkownika');
+            }
+        }
+
+        // Aktualizacja emaila
+        async function updateEmail() {
+            const newEmail = document.getElementById('newEmail').value.trim();
+            if (!newEmail) {
+                alert('Wprowadź nowy adres email');
+                return;
+            }
+
+            // Sprawdź czy email już istnieje
+            try {
+                const checkResponse = await fetch(`${API_URL}?email=${newEmail}`);
+                const users = await checkResponse.json();
+                
+                if (users.length > 0 && users[0].id !== currentUser.id) {
+                    alert('Ten adres email jest już zajęty');
+                    return;
+                }
+
+                const updateResponse = await fetch(`${API_URL}/${currentUser.id}`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: newEmail })
+                });
+
+                if (updateResponse.ok) {
+                    currentUser.email = newEmail;
+                    document.getElementById('currentEmail').textContent = `Aktualny email: ${newEmail}`;
+                    closeModal('emailModal');
+                    alert('Adres email został zaktualizowany');
+                    updateLocalStorage();
+                } else {
+                    throw new Error('Błąd aktualizacji');
+                }
+            } catch (error) {
+                console.error('Błąd:', error);
+                alert('Nie udało się zaktualizować adresu email');
+            }
+        }
+
+        // Usuwanie konta
+        async function deleteAccount() {
+            if (!confirm('Czy na pewno chcesz usunąć konto? Tej operacji nie można cofnąć.')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/${currentUser.id}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    localStorage.removeItem('loggedUser');
+                    alert('Twoje konto zostało usunięte');
+                    window.location.href = 'index.html';
+                } else {
+                    throw new Error('Błąd usuwania');
+                }
+            } catch (error) {
+                console.error('Błąd:', error);
+                alert('Nie udało się usunąć konta');
+            }
+        }
+
+        // Wylogowanie
+        function logout() {
+            localStorage.removeItem('loggedUser');
+            window.location.href = 'index.html';
+        }
+
+        // Pobierz ID zalogowanego użytkownika
+        function getUserId() {
+            const user = JSON.parse(localStorage.getItem('loggedUser'));
+            return user ? user.id : null;
+        }
+
+        // Aktualizuj dane w localStorage
+        function updateLocalStorage() {
+            localStorage.setItem('loggedUser', JSON.stringify(currentUser));
+        }
+    </script>
+</body>
+</html>

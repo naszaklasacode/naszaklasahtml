@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mój profil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="profil.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Panel boczny -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Moje Konto</h2>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-user"></i> Mój profil
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-home"></i> Strona główna
+                </a>
+                <a href="chat.html" class="nav-item">
+                    <i class="fas fa-comments"></i> Czat
+                </a>
+                <a href="znajomi.html" class="nav-item">
+                    <i class="fas fa-users"></i> Znajomi
+                </a>
+                <a href="ustawienia.html" class="nav-item">
+                    <i class="fas fa-cog"></i> Ustawienia
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i> Wyloguj się
+                </a>
+            </div>
+        </div>
+        
+        <!-- Główna zawartość -->
+        <div class="content">
+            <!-- Nagłówek profilu -->
+            <div class="profile-header">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Profilowe" class="profile-picture">
+                <div class="profile-info">
+                    <h1>Damian Janicki</h1>
+                    <p>Informatyk</p>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">128</div>
+                            <div class="stat-label">Posty</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">542</div>
+                            <div class="stat-label">Znajomi</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1.2k</div>
+                            <div class="stat-label">Polubienia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sekcja statusu -->
+            <div class="status-section">
+                <h3 class="status-title">Co u Ciebie słychać?</h3>
+                <textarea class="status-input" placeholder="Podziel się swoimi myślami..."></textarea>
+                <div class="status-actions">
+                    <div>
+                        <button class="status-btn">
+                            <i class="fas fa-camera"></i> Dodaj zdjęcie
+                        </button>
+                    </div>
+                    <button class="status-btn">Opublikuj</button>
+                </div>
+            </div>
+            
+            <!-- Posty -->
+            <div class="posts-section">
+                <h3 class="status-title">Moje posty</h3>
+                
+                <!-- Post 1 -->
+                <div class="post">
+                    <div class="post-header">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Profilowe" class="post-avatar">
+                        <div>
+                            <div class="post-user">Anna Kowalska</div>
+                            <div class="post-time">2 godziny temu</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Dzisiaj odwiedziłam piękne miejsce w górach! Widoki były zapierające dech w piersiach. Polecam wszystkim to miejsce na weekendowy wypad.
+                    </div>
+                    <img src="https://source.unsplash.com/random/800x600/?mountain" alt="Góry" class="post-image">
+                    <div class="post-actions">
+                        <div class="post-action">
+                            <i class="far fa-thumbs-up"></i> Polub (24)
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-comment"></i> Komentuj (8)
+                        </div>
+                        <div class="post-action">
+                            <i class="fas fa-share"></i> Udostępnij
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Post 2 -->
+                <div class="post">
+                    <div class="post-header">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Profilowe" class="post-avatar">
+                        <div>
+                            <div class="post-user">Anna Kowalska</div>
+                            <div class="post-time">Wczoraj</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Nowy przepis na ciasto czekoladowe wypróbowany! Wyszło przepyszne, idealne na niedzielne popołudnie. Przepis w komentarzu dla zainteresowanych.
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">
+                            <i class="far fa-thumbs-up"></i> Polub (42)
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-comment"></i> Komentuj (15)
+                        </div>
+                        <div class="post-action">
+                            <i class="fas fa-share"></i> Udostępnij
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="footer-content">
+            <a href="#">Polityka prywatności</a>
+            <a href="#">Regulamin</a>
+            <a href="#">Kontakt</a>
+            <a href="#">Pomoc</a>
+        </div>
+    </footer>
+</body>
+</html>

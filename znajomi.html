@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Znajomi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="znajomi.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Panel boczny -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Moje Konto</h2>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-home"></i> Strona główna
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-comments"></i> Czat
+                </a>
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-users"></i> Znajomi
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-user"></i> Profil
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i> Ustawienia
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i> Wyloguj się
+                </a>
+            </div>
+        </div>
+        
+        <!-- Główna zawartość -->
+        <div class="content">
+            <div class="friends-header">
+                <h1>Moja sieć znajomych</h1>
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Wyszukaj znajomych...">
+                    </div>
+                    <button class="add-friend-btn">
+                        <i class="fas fa-user-plus"></i> Dodaj znajomego
+                    </button>
+                </div>
+            </div>
+            
+            <div class="friends-container">
+                <!-- Karta znajomego 1 -->
+                <div class="friend-card">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profilowe" class="friend-avatar">
+                    <div class="friend-info">
+                        <h3>Kasia Nowak</h3>
+                        <p>32 znajomych</p>
+                        <div class="friend-actions">
+                            <button class="action-btn message-btn">
+                                <i class="fas fa-comment"></i> Napisz
+                            </button>
+                            <button class="action-btn profile-btn">
+                                <i class="fas fa-user"></i> Profil
+                            </button>
+                        </div>
+                    </div>
+                    <div class="friend-status online"></div>
+                </div>
+                
+                <!-- Karta znajomego 2 -->
+                <div class="friend-card">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profilowe" class="friend-avatar">
+                    <div class="friend-info">
+                        <h3>Marek Kowalski</h3>
+                        <p>Wspólnych znajomych: 5</p>
+                        <div class="friend-actions">
+                            <button class="action-btn message-btn">
+                                <i class="fas fa-comment"></i> Napisz
+                            </button>
+                            <button class="action-btn profile-btn">
+                                <i class="fas fa-user"></i> Profil
+                            </button>
+                        </div>
+                    </div>
+                    <div class="friend-status offline"></div>
+                </div>
+                
+                <!-- Karta znajomego 3 -->
+                <div class="friend-card">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Profilowe" class="friend-avatar">
+                    <div class="friend-info">
+                        <h3>Anna Wiśniewska</h3>
+                        <p>128 znajomych</p>
+                        <div class="friend-actions">
+                            <button class="action-btn message-btn">
+                                <i class="fas fa-comment"></i> Napisz
+                            </button>
+                            <button class="action-btn profile-btn">
+                                <i class="fas fa-user"></i> Profil
+                            </button>
+                        </div>
+                    </div>
+                    <div class="friend-status online"></div>
+                </div>
+                
+                <!-- Karta znajomego 4 -->
+                <div class="friend-card">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profilowe" class="friend-avatar">
+                    <div class="friend-info">
+                        <h3>Tomasz Lewandowski</h3>
+                        <p>Wspólnych znajomych: 12</p>
+                        <div class="friend-actions">
+                            <button class="action-btn message-btn">
+                                <i class="fas fa-comment"></i> Napisz
+                            </button>
+                            <button class="action-btn profile-btn">
+                                <i class="fas fa-user"></i> Profil
+                            </button>
+                        </div>
+                    </div>
+                    <div class="friend-status away"></div>
+                </div>
+                
+                <!-- Karta znajomego 5 -->
+                <div class="friend-card">
+                    <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Profilowe" class="friend-avatar">
+                    <div class="friend-info">
+                        <h3>Magda Zielińska</h3>
+                        <p>64 znajomych</p>
+                        <div class="friend-actions">
+                            <button class="action-btn message-btn">
+                                <i class="fas fa-comment"></i> Napisz
+                            </button>
+                            <button class="action-btn profile-btn">
+                                <i class="fas fa-user"></i> Profil
+                            </button>
+                        </div>
+                    </div>
+                    <div class="friend-status online"></div>
+                </div>
+                
+                <!-- Karta znajomego 6 -->
+                <div class="friend-card">
+                    <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Profilowe" class="friend-avatar">
+                    <div class="friend-info">
+                        <h3>Piotr Nowak</h3>
+                        <p>Wspólnych znajomych: 8</p>
+                        <div class="friend-actions">
+                            <button class="action-btn message-btn">
+                                <i class="fas fa-comment"></i> Napisz
+                            </button>
+                            <button class="action-btn profile-btn">
+                                <i class="fas fa-user"></i> Profil
+                            </button>
+                        </div>
+                    </div>
+                    <div class="friend-status offline"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="footer-content">
+            <a href="#">Polityka prywatności</a>
+            <a href="#">Regulamin</a>
+            <a href="#">Kontakt</a>
+            <a href="#">Pomoc</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,206 @@
+/* regulamin.css - pełna wersja z poprawioną stopką */
+
+/* Reset i podstawy */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Główny kontener */
+.main-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+/* Kontener treści */
+.content-container {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+/* Baner */
+.banner {
+  background: linear-gradient(135deg, #816DB1 0%, #6A5ACD 100%);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.banner h1 {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.banner p {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+/* Zawartość regulaminu */
+.terms-content {
+  padding: 1.5rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+.terms-content h2 {
+  color: #7D63BB;
+  margin: 1.5rem 0 1rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 600;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.5rem;
+}
+
+.terms-content p {
+  margin-bottom: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+}
+
+.terms-content ul {
+  margin: 1rem 0 1rem 1.5rem;
+  list-style-type: square;
+}
+
+.terms-content li {
+  margin-bottom: 0.5rem;
+  padding-left: 5px;
+}
+
+/* Przycisk POWRÓT */
+.back-button {
+  text-align: center;
+  padding: 0 2rem 2rem;
+  margin-top: 1rem;
+}
+
+.back-button .button {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  background: #7D63BB;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button .button:hover {
+  background: #6a52a6;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-button .button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Stopka - nowa wersja */
+.site-footer {
+  background: #000;
+  color: white;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 0.75rem;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-content a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.footer-content a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 1rem;
+  }
+  
+  .content-container {
+    border-radius: 8px;
+  }
+  
+  .terms-content {
+    padding: 1.2rem;
+  }
+  
+  .terms-content ul {
+    margin-left: 1.2rem;
+  }
+  
+  .back-button {
+    padding: 0 1.5rem 1.5rem;
+  }
+  
+  .back-button .button {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+  }
+  
+  .site-footer {
+    font-size: 0.rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    padding: 1.5rem 1rem;
+  }
+  
+  .terms-content {
+    padding: 1rem;
+  }
+  
+  .footer-content {
+    gap: 8px;
+    line-height: 1.4;
+  }
+}

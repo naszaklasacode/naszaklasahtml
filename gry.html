@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub - Gry Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reszta CSS pozostaje bez zmian (jak w poprzednim kodzie) */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: 'Inter', sans-serif;
+          background: #f8f9fa;
+          color: #333;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          line-height: 1.6;
+          padding: 20px;
+        }
+
+        .main-container {
+          flex: 1;
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .header {
+          background: linear-gradient(135deg, #816DB1 0%, #6A5ACD 100%);
+          color: white;
+          text-align: center;
+          padding: 35px 20px 25px;
+          position: relative;
+          border-radius: 12px 12px 0 0;
+          margin-bottom: 30px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+          font-size: 2.5rem;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          margin-bottom: 15px;
+          position: relative;
+          display: inline-block;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background: rgba(255, 255, 255, 0.5);
+          border-radius: 3px;
+        }
+
+        .header p {
+          font-size: 1.1rem;
+          opacity: 0.92;
+          font-weight: 300;
+          margin-top: 20px;
+        }
+
+        .game-btn {
+          padding: 12px 20px;
+          background: linear-gradient(135deg, #7D63BB 0%, #6A5ACD 100%);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          letter-spacing: 0.5px;
+          box-shadow: 0 4px 8px rgba(125, 99, 187, 0.2);
+          margin: 5px;
+          text-decoration: none;
+          display: inline-block;
+        }
+
+        .game-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(125, 99, 187, 0.3);
+        }
+
+        .section-title {
+          text-align: center;
+          margin: 30px 0;
+          font-size: 1.8rem;
+          color: #444;
+          font-weight: 600;
+          position: relative;
+        }
+
+        .section-title::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50px;
+          height: 3px;
+          background: linear-gradient(90deg, #7D63BB, #b8a8e0);
+        }
+
+        .games-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 25px;
+          margin: 30px 0;
+        }
+
+        .game-card {
+          background: white;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          position: relative;
+        }
+
+        .game-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .game-badge {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background: #ff6b6b;
+          color: white;
+          padding: 4px 10px;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 600;
+          z-index: 2;
+        }
+
+        .game-image {
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          border-bottom: 1px solid #eee;
+        }
+
+        .game-info {
+          padding: 15px;
+        }
+
+        .game-title {
+          font-weight: 700;
+          margin-bottom: 8px;
+          color: #444;
+          font-size: 1.2rem;
+        }
+
+        .game-stats {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 15px;
+          font-size: 0.9rem;
+          color: #777;
+        }
+
+        .game-rating {
+          color: #f1c40f;
+          font-weight: 600;
+        }
+
+        .game-description {
+          font-size: 0.95rem;
+          color: #555;
+          margin-bottom: 15px;
+          line-height: 1.5;
+        }
+
+        .categories {
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin: 30px 0;
+        }
+
+        .category-tag {
+          background: #e9ecef;
+          color: #495057;
+          padding: 8px 15px;
+          border-radius: 20px;
+          font-size: 0.9rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+
+        .category-tag:hover {
+          background: #dee2e6;
+        }
+
+        .category-tag.active {
+          background: linear-gradient(135deg, #7D63BB 0%, #6A5ACD 100%);
+          color: white;
+        }
+
+        .site-footer {
+          background: #1a1a1a;
+          color: white;
+          padding: 15px 0;
+          width: 100%;
+          text-align: center;
+          font-size: 0.85rem;
+          margin-top: 40px;
+          border-radius: 0 0 12px 12px;
+        }
+
+        .footer-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .footer-content a {
+          color: #bbb;
+          text-decoration: none;
+          padding: 0 10px;
+          position: relative;
+          transition: color 0.3s;
+        }
+
+        .footer-content a:hover {
+          color: white;
+        }
+
+        .footer-content a:not(:last-child)::after {
+          content: "|";
+          position: absolute;
+          right: -3px;
+          color: #555;
+        }
+
+        /* Game frame */
+        .game-frame-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.9);
+          z-index: 1000;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .game-frame {
+          width: 90%;
+          height: 80%;
+          border: none;
+          border-radius: 8px;
+          background: white;
+        }
+
+        .close-game {
+          margin-top: 20px;
+          padding: 10px 25px;
+          background: #ff6b6b;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+          body {
+            padding: 15px;
+          }
+          
+          .header {
+            padding: 30px 15px 20px;
+          }
+          
+          .header h1 {
+            font-size: 2rem;
+          }
+          
+          .games-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .header h1 {
+            font-size: 1.9rem;
+          }
+          
+          .header h1::after {
+            width: 50px;
+            bottom: -8px;
+          }
+          
+          .header p {
+            font-size: 1rem;
+            margin-top: 15px;
+          }
+          
+          .games-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .footer-content {
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+          
+          .footer-content a::after {
+            display: none;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <h1>GameHub</h1>
+            <p>Tysiące darmowych gier online w jednym miejscu!</p>
+        </header>
+
+        <div class="categories">
+            <div class="category-tag active">Wszystkie</div>
+            <div class="category-tag">Logiczne</div>
+            <div class="category-tag">Strzelanki</div>
+            <div class="category-tag">Wyścigowe</div>
+            <div class="category-tag">Zręcznościowe</div>
+        </div>
+
+        <h2 class="section-title">Popularne gry</h2>
+
+        <div class="games-grid">
+            <!-- Gra 1 - 2048 -->
+            <div class="game-card">
+                <div class="game-badge">HIT</div>
+                <img src="https://img.freepik.com/free-vector/neon-lights-background-theme_52683-44625.jpg" alt="Gra 2048" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">2048</h3>
+                    <div class="game-stats">
+                        <span>5.1M rozegrań</span>
+                        <span class="game-rating">★ 4.8</span>
+                    </div>
+                    <p class="game-description">Łącz identyczne kafelki, aby uzyskać kafelek 2048. Klasyczna gra logiczna!</p>
+                    <button class="game-btn" onclick="loadGame('https://play2048.co/')">Graj teraz</button>
+                </div>
+            </div>
+
+            <!-- Gra 2 - Snake -->
+            <div class="game-card">
+                <img src="https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg" alt="Gra Snake" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Snake</h3>
+                    <div class="game-stats">
+                        <span>3.7M rozegrań</span>
+                        <span class="game-rating">★ 4.6</span>
+                    </div>
+                    <p class="game-description">Klasyczny Snake. Steruj wężem, zbieraj jedzenie i nie uderzaj w ściany!</p>
+                    <button class="game-btn" onclick="loadGame('https://playsnake.org/')">Graj teraz</button>
+                </div>
+            </div>
+
+            <!-- Gra 3 - Tetris -->
+            <div class="game-card">
+                <div class="game-badge">KLASYK</div>
+                <img src="https://img.freepik.com/free-vector/gradient-pastel-sky-background_23-2148917404.jpg" alt="Gra Tetris" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Tetris</h3>
+                    <div class="game-stats">
+                        <span>4.2M rozegrań</span>
+                        <span class="game-rating">★ 4.9</span>
+                    </div>
+                    <p class="game-description">Układaj klocki i zdobywaj punkty. Najpopularniejsza gra logiczna świata!</p>
+                    <button class="game-btn" onclick="loadGame('https://tetris.com/play-tetris')">Graj teraz</button>
+                </div>
+            </div>
+
+            <!-- Gra 4 - Pacman -->
+            <div class="game-card">
+                <img src="https://img.freepik.com/free-vector/hand-painted-watercolor-abstract-background_23-2149030058.jpg" alt="Gra Pacman" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Pacman</h3>
+                    <div class="game-stats">
+                        <span>3.9M rozegrań</span>
+                        <span class="game-rating">★ 4.7</span>
+                    </div>
+                    <p class="game-description">Zjedz wszystkie kropki, unikając duchów. Kultowa gra z lat 80-tych!</p>
+                    <button class="game-btn" onclick="loadGame('https://www.pacman.com/')">Graj teraz</button>
+                </div>
+            </div>
+
+            <!-- Gra 5 - Krzyżak -->
+            <div class="game-card">
+                <div class="game-badge">2 GRACZY</div>
+                <img src="https://img.freepik.com/free-vector/gradient-purple-blue-abstract-background_23-2149120778.jpg" alt="Gra Krzyżak" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Kółko i Krzyżyk</h3>
+                    <div class="game-stats">
+                        <span>2.8M rozegrań</span>
+                        <span class="game-rating">★ 4.3</span>
+                    </div>
+                    <p class="game-description">Klasyczna gra w kółko i krzyżyk. Zagraj z przyjacielem!</p>
+                    <button class="game-btn" onclick="loadGame('https://playtictactoe.org/')">Graj teraz</button>
+                </div>
+            </div>
+
+            <!-- Gra 6 - Flappy Bird -->
+            <div class="game-card">
+                <div class="game-badge">ARCADE</div>
+                <img src="https://img.freepik.com/free-vector/gradient-purple-background_52683-70824.jpg" alt="Gra Flappy Bird" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Flappy Bird</h3>
+                    <div class="game-stats">
+                        <span>3.5M rozegrań</span>
+                        <span class="game-rating">★ 4.5</span>
+                    </div>
+                    <p class="game-description">Steruj ptakiem i omijaj rury. Proste, ale wciągające wyzwanie!</p>
+                    <button class="game-btn" onclick="loadGame('https://flappybird.io/')">Graj teraz</button>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Nowe gry</h2>
+
+        <div class="games-grid">
+            <!-- Nowa gra 1 - Wordle -->
+            <div class="game-card">
+                <div class="game-badge">NOWOŚĆ</div>
+                <img src="https://img.freepik.com/free-vector/gradient-pink-blue-abstract-background_23-2149120779.jpg" alt="Gra Wordle" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Wordle PL</h3>
+                    <div class="game-stats">
+                        <span>1.2M rozegrań</span>
+                        <span class="game-rating">★ 4.8</span>
+                    </div>
+                    <p class="game-description">Odgadnij ukryte słowo w 6 próbach. Popularna gra słowna!</p>
+                    <button class="game-btn" onclick="loadGame('https://wordle.pl/')">Graj teraz</button>
+                </div>
+            </div>
+
+            <!-- Nowa gra 2 - Sudoku -->
+            <div class="game-card">
+                <div class="game-badge">LOGICZNA</div>
+                <img src="https://img.freepik.com/free-vector/gradient-blue-abstract-background_23-2149120776.jpg" alt="Gra Sudoku" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Sudoku</h3>
+                    <div class="game-stats">
+                        <span>980K rozegrań</span>
+                        <span class="game-rating">★ 4.7</span>
+                    </div>
+                    <p class="game-description">Wypełnij diagram cyframi od 1 do 9. Idealna gra dla miłośników łamigłówek!</p>
+                    <button class="game-btn" onclick="loadGame('https://sudoku.com/pl/')">Graj teraz</button>
+                </div>
+            </div>
+
+            <!-- Nowa gra 3 - Chess -->
+            <div class="game-card">
+                <div class="game-badge">STRATEGIA</div>
+                <img src="https://img.freepik.com/free-vector/gradient-purple-background_52683-70823.jpg" alt="Gra Chess" class="game-image">
+                <div class="game-info">
+                    <h3 class="game-title">Szachy Online</h3>
+                    <div class="game-stats">
+                        <span>1.5M rozegrań</span>
+                        <span class="game-rating">★ 4.9</span>
+                    </div>
+                    <p class="game-description">Zagraj w szachy z komputerem lub znajomym. Królewska gra!</p>
+                    <button class="game-btn" onclick="loadGame('https://www.chess.com/play/computer')">Graj teraz</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <button class="game-btn" style="background: linear-gradient(135deg, #6c757d 0%, #495057 100%);">Zobacz więcej gier</button>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <a href="#">Regulamin</a>
+                <a href="#">Polityka prywatności</a>
+                <a href="#">Kontakt</a>
+                <a href="#">O nas</a>
+                <a href="#">Pomoc</a>
+            </div>
+            <div class="footer-content" style="margin-top: 10px;">
+                &copy; 2023 GameHub - Wszelkie prawa zastrzeżone
+            </div>
+        </footer>
+    </div>
+
+    <!-- Okno z grą -->
+    <div class="game-frame-container" id="gameFrameContainer">
+        <iframe class="game-frame" id="gameFrame" src="" allowfullscreen></iframe>
+        <button class="close-game" onclick="closeGame()">Zamknij grę</button>
+    </div>
+
+    <script>
+        // Funkcja do ładowania gry w iframe
+        function loadGame(url) {
+            const container = document.getElementById('gameFrameContainer');
+            const frame = document.getElementById('gameFrame');
+            
+            frame.src = url;
+            container.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Blokuje scrollowanie strony głównej
+        }
+
+        // Funkcja do zamykania gry
+        function closeGame() {
+            const container = document.getElementById('gameFrameContainer');
+            const frame = document.getElementById('gameFrame');
+            
+            frame.src = '';
+            container.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Przywraca scrollowanie
+        }
+
+        // Zamykanie gry po kliknięciu poza iframe
+        document.getElementById('gameFrameContainer').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGame();
+            }
+        });
+    </script>
+</body>
+</html>

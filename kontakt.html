@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaszaKlasa.pl - Kontakt</title>
+    <link rel="stylesheet" href="kontakt.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <div class="content-container">
+            <!-- Nagłówek -->
+            <div class="banner">
+                <h1>KONTAKT</h1>
+                <p>Skontaktuj się z naszym zespołem</p>
+            </div>
+
+            <!-- Sekcja kontaktowa - nowy układ -->
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Telefon</h3>
+                    <p>+48 730 014 086</p>
+                    <a href="tel:+48730014086">Zadzwoń</a>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Email</h3>
+                    <p>damik.janicki@gmail.com</p>
+                    <a href="mailto:damik.janicki@gmail.com">Napisz</a>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Adres</h3>
+                    <p>ul. Wirtualna 123<br>00-001 Warszawa</p>
+                    <a href="https://maps.google.com" target="_blank">Pokaż mapę</a>
+                </div>
+            </div>
+
+            <!-- Formularz kontaktowy -->
+            <div class="contact-form">
+                <h2>Wyślij wiadomość</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Imię i nazwisko</label>
+                        <input type="text" id="name" class="form-control" placeholder="Wpisz swoje imię i nazwisko" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Wpisz swój email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Wiadomość</label>
+                        <textarea id="message" class="form-control" placeholder="Treść Twojej wiadomości..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">WYŚLIJ WIADOMOŚĆ</button>
+                </form>
+            </div>
+
+            <!-- Przycisk powrotu -->
+            <div class="back-button">
+                <a href="index.html" class="button">POWRÓT DO STRONY GŁÓWNEJ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stopka -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <span>© 2025 Naszaklasa.pl</span>
+            <a href="regulamin.html">Regulamin</a>
+            <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+            <a href="kontakt.html">Kontakt</a>
+        </div>
+    </footer>
+</body>
+</html>

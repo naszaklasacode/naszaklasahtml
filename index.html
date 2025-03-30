@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaszaKlasa.pl - Logowanie i rejestracja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="form-container">
+            <!-- Nagłówek z nowym obramowaniem -->
+            <div class="header">
+                <h1>NASZAKLASA.PL</h1>
+                <p>Odnajdź swoich znajomych z klasy</p>
+            </div>
+
+            <!-- Sekcja logowania -->
+            <div class="auth-section login-section">
+                <h2 class="section-title">Zaloguj się</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="email" id="loginEmail" class="input-field" placeholder="Wpisz swój email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="loginPassword" class="input-field" placeholder="Wpisz swoje hasło" required>
+                    </div>
+                    <button type="submit" class="auth-btn">ZALOGUJ</button>
+                </form>
+                <a href="resetpassword.html" class="auth-link">Zapomniałeś hasła?</a>
+            </div>
+
+            <!-- Separator -->
+            <div class="section-divider">
+                <span>LUB</span>
+            </div>
+
+            <!-- Sekcja rejestracji -->
+            <div class="auth-section register-section">
+                <h2 class="section-title">Zarejestruj się</h2>
+                <form id="registerForm">
+                    <div class="input-group">
+                        <input type="text" id="registerName" class="input-field" placeholder="Imię i nazwisko" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="registerEmail" class="input-field" placeholder="Wpisz swój email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="registerPassword" class="input-field" placeholder="Utwórz hasło" required>
+                    </div>
+                    <button type="submit" class="auth-btn">STWÓRZ KONTO</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stopka -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <span>© 2025 Naszaklasa.pl</span>
+            <a href="regulamin.html">Regulamin</a>
+            <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+            <a href="kontakt.html">Kontakt</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript do obsługi logowania i rejestracji przez serwer -->
+    <script>
+        // Funkcja do obsługi rejestracji
+        async function handleRegistration(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/users', { // Zmieniony port na 3000
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Rejestracja udana! Możesz się teraz zalogować.');
+                    document.getElementById('registerForm').reset();
+                } else {
+                    alert(data.message || 'Wystąpił błąd podczas rejestracji');
+                }
+            } catch (error) {
+                console.error('Błąd rejestracji:', error);
+                alert('Wystąpił błąd podczas rejestracji');
+            }
+        }
+
+        // Funkcja do obsługi logowania
+        async function handleLogin(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/users?email=' + email + '&password=' + password, { // Zmieniony port na 3000
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+                if (data.length > 0) {
+                    localStorage.setItem('loggedUser', JSON.stringify(data[0])); // Zapisanie zalogowanego użytkownika
+                    window.location.href = 'profil.html';  // Przekierowanie po pomyślnym logowaniu
+                } else {
+                    alert('Nieprawidłowy email lub hasło.');
+                }
+            } catch (error) {
+                console.error('Błąd logowania:', error);
+                alert('Wystąpił błąd podczas logowania');
+            }
+        }
+
+        // Event listeners dla formularzy
+        document.getElementById('registerForm').addEventListener('submit', handleRegistration);
+        document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    </script>
+</body>
+</html>

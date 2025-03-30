@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Czat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Panel boczny -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Czat</h2>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-home"></i> Strona główna
+                </a>
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-comments"></i> Czat
+                </a>
+                <a href="profil.html" class="nav-item">
+                    <i class="fas fa-user"></i> Profil
+                </a>
+                <a href="" class="nav-item">
+                    <i class="fas fa-users"></i> Znajomi
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i> Ustawienia
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i> Wyloguj się
+                </a>
+            </div>
+        </div>
+        
+        <!-- Główna zawartość -->
+        <div class="chat-container">
+            <!-- Lista znajomych -->
+            <div class="friends-list">
+                <div class="friends-header">
+                    <h3>Znajomi online</h3>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Szukaj znajomych...">
+                    </div>
+                </div>
+                
+                <div class="friends-items">
+                    <!-- Znajomy 1 -->
+                    <div class="friend-item active">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profilowe" class="friend-avatar">
+                        <div class="friend-info">
+                            <div class="friend-name">Kasia Nowak</div>
+                            <div class="friend-status">Online</div>
+                        </div>
+                        <div class="unread-count">3</div>
+                    </div>
+                    
+                    <!-- Znajomy 2 -->
+                    <div class="friend-item">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profilowe" class="friend-avatar">
+                        <div class="friend-info">
+                            <div class="friend-name">Marek Kowalski</div>
+                            <div class="friend-status">Ostatnio online: 2h temu</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Znajomy 3 -->
+                    <div class="friend-item">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Profilowe" class="friend-avatar">
+                        <div class="friend-info">
+                            <div class="friend-name">Anna Wiśniewska</div>
+                            <div class="friend-status">Online</div>
+                        </div>
+                        <div class="unread-count">1</div>
+                    </div>
+                    
+                    <!-- Znajomy 4 -->
+                    <div class="friend-item">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Profilowe" class="friend-avatar">
+                        <div class="friend-info">
+                            <div class="friend-name">Tomasz Lewandowski</div>
+                            <div class="friend-status">Ostatnio online: wczoraj</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Znajomy 5 -->
+                    <div class="friend-item">
+                        <img src="https://randomuser.me/api/portraits/women/23.jpg" alt="Profilowe" class="friend-avatar">
+                        <div class="friend-info">
+                            <div class="friend-name">Magda Zielińska</div>
+                            <div class="friend-status">Online</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Okno czatu -->
+            <div class="chat-window">
+                <div class="chat-header">
+                    <div class="chat-user">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profilowe" class="chat-avatar">
+                        <div>
+                            <div class="chat-name">Kasia Nowak</div>
+                            <div class="chat-status">Online</div>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="chat-action-btn"><i class="fas fa-phone"></i></button>
+                        <button class="chat-action-btn"><i class="fas fa-video"></i></button>
+                        <button class="chat-action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                    </div>
+                </div>
+                
+                <div class="chat-messages">
+                    <!-- Data -->
+                    <div class="message-date">Dzisiaj</div>
+                    
+                    <!-- Wiadomość otrzymana -->
+                    <div class="message received">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profilowe" class="message-avatar">
+                        <div class="message-content">
+                            <div class="message-text">Cześć! Jak tam u Ciebie?</div>
+                            <div class="message-time">10:32</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wiadomość wysłana -->
+                    <div class="message sent">
+                        <div class="message-content">
+                            <div class="message-text">Hej! Wszystko super, właśnie wróciłam z gór. A u Ciebie?</div>
+                            <div class="message-time">10:35</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wiadomość otrzymana -->
+                    <div class="message received">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profilowe" class="message-avatar">
+                        <div class="message-content">
+                            <div class="message-text">U mnie też dobrze! Pamiętasz naszą rozmowę o wyjeździe nad morze?</div>
+                            <div class="message-time">10:36</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wiadomość wysłana -->
+                    <div class="message sent">
+                        <div class="message-content">
+                            <div class="message-text">Oczywiście! Myślałam o tym w weekend. Może w przyszłym miesiącu?</div>
+                            <div class="message-time">10:38</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Wiadomość otrzymana -->
+                    <div class="message received">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profilowe" class="message-avatar">
+                        <div class="message-content">
+                            <div class="message-text">Świetny pomysł! Dokładnie wtedy mam wolne. Możemy zacząć planować :)</div>
+                            <div class="message-time">10:40</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <button class="input-action-btn"><i class="far fa-smile"></i></button>
+                    <button class="input-action-btn"><i class="fas fa-paperclip"></i></button>
+                    <input type="text" placeholder="Napisz wiadomość...">
+                    <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <div class="footer-content">
+            <a href="#">Polityka prywatności</a>
+            <a href="#">Regulamin</a>
+            <a href="#">Kontakt</a>
+            <a href="#">Pomoc</a>
+        </div>
+    </footer>
+</body>
+</html>

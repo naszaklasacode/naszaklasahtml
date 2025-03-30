@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaszaKlasa - Album klasowy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* style.css - pełna wersja z poprawionym nagłówkiem */
+
+        /* Reset i podstawy */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: 'Inter', sans-serif;
+          background: #f8f9fa;
+          color: #333;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          line-height: 1.6;
+          padding: 20px;
+        }
+
+        /* Główny kontener */
+        .main-container {
+          flex: 1;
+          width: 100%;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        /* Nagłówek - nowa wersja ze spójnym obramowaniem */
+        .header {
+          background: linear-gradient(135deg, #816DB1 0%, #6A5ACD 100%);
+          color: white;
+          text-align: center;
+          padding: 35px 20px 25px;
+          position: relative;
+          border-radius: 12px 12px 0 0;
+          margin-bottom: 30px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+          font-size: 2.2rem;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          margin-bottom: 15px;
+          position: relative;
+          display: inline-block;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Obramowanie pod głównym napisem (jak na innych stronach) */
+        .header h1::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background: rgba(255, 255, 255, 0.5);
+          border-radius: 3px;
+        }
+
+        .header p {
+          font-size: 1.1rem;
+          opacity: 0.92;
+          font-weight: 300;
+          margin-top: 20px;
+        }
+
+        /* Przyciski */
+        .auth-btn {
+          padding: 12px 20px;
+          background: linear-gradient(135deg, #7D63BB 0%, #6A5ACD 100%);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          letter-spacing: 0.5px;
+          box-shadow: 0 4px 8px rgba(125, 99, 187, 0.2);
+          margin: 10px 5px;
+        }
+
+        .auth-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(125, 99, 187, 0.3);
+        }
+
+        .auth-btn:active {
+          transform: translateY(0);
+        }
+
+        /* Sekcje */
+        .section-title {
+          text-align: center;
+          margin-bottom: 25px;
+          font-size: 1.4rem;
+          color: #444;
+          font-weight: 600;
+          position: relative;
+        }
+
+        /* Spójne obramowanie pod tytułami sekcji */
+        .section-title::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50px;
+          height: 3px;
+          background: linear-gradient(90deg, #7D63BB, #b8a8e0);
+        }
+
+        /* Grid galerii */
+        .photo-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 25px;
+          margin: 30px 0;
+        }
+
+        /* Karta zdjęcia */
+        .photo-card {
+          background: white;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .photo-image {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-bottom: 1px solid #eee;
+        }
+
+        .photo-info {
+          padding: 15px;
+        }
+
+        .photo-title {
+          font-weight: 600;
+          margin-bottom: 8px;
+          color: #444;
+        }
+
+        .photo-date {
+          font-size: 0.9rem;
+          color: #777;
+          margin-bottom: 10px;
+        }
+
+        .photo-description {
+          font-size: 0.95rem;
+          color: #555;
+          margin-bottom: 15px;
+        }
+
+        .photo-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .tag {
+          background: #f0e6ff;
+          color: #6A5ACD;
+          padding: 4px 10px;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        /* Formularz dodawania zdjęć */
+        .form-container {
+          background: white;
+          border-radius: 12px;
+          box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+          overflow: hidden;
+          margin: 30px auto;
+          max-width: 600px;
+        }
+
+        .form-section {
+          padding: 25px 30px;
+        }
+
+        .input-group {
+          margin-bottom: 20px;
+        }
+
+        .input-field {
+          width: 100%;
+          padding: 14px 16px;
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          background: #f9f9f9;
+        }
+
+        .input-field:focus {
+          border-color: #7D63BB;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(125, 99, 187, 0.1);
+          background: #fff;
+        }
+
+        .input-field::placeholder {
+          color: #aaa;
+          font-weight: 300;
+        }
+
+        /* Stopka */
+        .site-footer {
+          background: #1a1a1a;
+          color: white;
+          padding: 15px 0;
+          width: 100%;
+          text-align: center;
+          font-size: 0.85rem;
+          margin-top: 40px;
+          border-radius: 0 0 12px 12px;
+        }
+
+        .footer-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .footer-content a {
+          color: #bbb;
+          text-decoration: none;
+          padding: 0 10px;
+          position: relative;
+          transition: color 0.3s;
+        }
+
+        .footer-content a:hover {
+          color: white;
+        }
+
+        .footer-content a:not(:last-child)::after {
+          content: "|";
+          position: absolute;
+          right: -3px;
+          color: #555;
+        }
+
+        /* Nawigacja */
+        .class-nav {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 30px;
+          flex-wrap: wrap;
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+          body {
+            padding: 15px;
+          }
+          
+          .header {
+            padding: 30px 15px 20px;
+          }
+          
+          .header h1 {
+            font-size: 2rem;
+          }
+          
+          .photo-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .header h1 {
+            font-size: 1.9rem;
+          }
+          
+          .header h1::after {
+            width: 50px;
+            bottom: -8px;
+          }
+          
+          .header p {
+            font-size: 1rem;
+            margin-top: 15px;
+          }
+          
+          .photo-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .footer-content {
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+          
+          .footer-content a::after {
+            display: none;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <h1>NaszaKlasa</h1>
+            <p>Klasy 3B - Gimnazjum im. Jana Kochanowskiego w Warszawie</p>
+        </header>
+
+        <div class="class-nav">
+            <button class="auth-btn">Wszystkie zdjęcia</button>
+            <button class="auth-btn">Wycieczki</button>
+            <button class="auth-btn">Uroczystości</button>
+            <button class="auth-btn">Imprezy</button>
+            <button class="auth-btn">Lekcje</button>
+        </div>
+
+        <h2 class="section-title">Nasz album klasowy</h2>
+
+        <div class="photo-grid">
+            <!-- Przykładowe zdjęcie 1 -->
+            <div class="photo-card">
+                <img src="https://source.unsplash.com/random/600x400/?school,class" alt="Zdjęcie klasowe" class="photo-image">
+                <div class="photo-info">
+                    <h3 class="photo-title">Wycieczka w góry - 2023</h3>
+                    <p class="photo-date">15 maja 2023</p>
+                    <p class="photo-description">Nasza niezapomniana wycieczka w Tatry. Wspaniałe widoki i świetna zabawa!</p>
+                    <div class="photo-tags">
+                        <span class="tag">wycieczka</span>
+                        <span class="tag">Tatry</span>
+                        <span class="tag">3B</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Przykładowe zdjęcie 2 -->
+            <div class="photo-card">
+                <img src="https://source.unsplash.com/random/600x400/?graduation" alt="Zakończenie roku" class="photo-image">
+                <div class="photo-info">
+                    <h3 class="photo-title">Zakończenie roku szkolnego</h3>
+                    <p class="photo-date">23 czerwca 2023</p>
+                    <p class="photo-description">Uroczyste zakończenie roku szkolnego 2022/2023 na sali gimnastycznej.</p>
+                    <div class="photo-tags">
+                        <span class="tag">uroczystość</span>
+                        <span class="tag">zakończenie roku</span>
+                        <span class="tag">3B</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Przykładowe zdjęcie 3 -->
+            <div class="photo-card">
+                <img src="https://source.unsplash.com/random/600x400/?science,lab" alt="Lekcja chemii" class="photo-image">
+                <div class="photo-info">
+                    <h3 class="photo-title">Doświadczenia chemiczne</h3>
+                    <p class="photo-date">12 kwietnia 2023</p>
+                    <p class="photo-description">Lekcja chemii - reakcje strąceniowe. Pamiętacie tę eksplozję?</p>
+                    <div class="photo-tags">
+                        <span class="tag">chemia</span>
+                        <span class="tag">doświadczenia</span>
+                        <span class="tag">3B</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Przykładowe zdjęcie 4 -->
+            <div class="photo-card">
+                <img src="https://source.unsplash.com/random/600x400/?party,school" alt="Studniówka" class="photo-image">
+                <div class="photo-info">
+                    <h3 class="photo-title">Studniówka 2023</h3>
+                    <p class="photo-date">28 stycznia 2023</p>
+                    <p class="photo-description">Niezapomniana noc! Polonez poszedł świetnie, a zabawa trwała do białego rana.</p>
+                    <div class="photo-tags">
+                        <span class="tag">studniówka</span>
+                        <span class="tag">zabawa</span>
+                        <span class="tag">3B</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Przykładowe zdjęcie 5 -->
+            <div class="photo-card">
+                <img src="https://source.unsplash.com/random/600x400/?sport,school" alt="Zawody sportowe" class="photo-image">
+                <div class="photo-info">
+                    <h3 class="photo-title">Mistrzostwa szkoły</h3>
+                    <p class="photo-date">5 października 2022</p>
+                    <p class="photo-description">Nasza klasa zdobyła 1 miejsce w sztafetach! Brawo my!</p>
+                    <div class="photo-tags">
+                        <span class="tag">sport</span>
+                        <span class="tag">zawody</span>
+                        <span class="tag">3B</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Przykładowe zdjęcie 6 -->
+            <div class="photo-card">
+                <img src="https://source.unsplash.com/random/600x400/?trip,bus" alt="Wycieczka do Krakowa" class="photo-image">
+                <div class="photo-info">
+                    <h3 class="photo-title">Kraków - zwiedzanie</h3>
+                    <p class="photo-date">18 września 2022</p>
+                    <p class="photo-description">Pierwsza wycieczka w nowym roku szkolnym. Wawel, Sukiennice i smocza jama!</p>
+                    <div class="photo-tags">
+                        <span class="tag">wycieczka</span>
+                        <span class="tag">Kraków</span>
+                        <span class="tag">3B</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formularz dodawania nowych zdjęć -->
+        <div class="form-container">
+            <div class="header">
+                <h2>Dodaj nowe zdjęcie</h2>
+                <p>Podziel się wspomnieniami z klasą</p>
+            </div>
+            <div class="form-section">
+                <div class="input-group">
+                    <input type="text" class="input-field" placeholder="Tytuł zdjęcia">
+                </div>
+                <div class="input-group">
+                    <input type="date" class="input-field">
+                </div>
+                <div class="input-group">
+                    <textarea class="input-field" placeholder="Opis zdjęcia" rows="3"></textarea>
+                </div>
+                <div class="input-group">
+                    <input type="text" class="input-field" placeholder="Tagi (oddziel przecinkami)">
+                </div>
+                <div class="input-group">
+                    <input type="file" class="input-field">
+                </div>
+                <button class="auth-btn">Dodaj zdjęcie</button>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <a href="#">Regulamin</a>
+                <a href="#">Polityka prywatności</a>
+                <a href="#">Kontakt</a>
+                <a href="#">O nas</a>
+                <a href="#">Pomoc</a>
+            </div>
+            <div class="footer-content" style="margin-top: 10px;">
+                &copy; 2023 NaszaKlasa.pl - Wszelkie prawa zastrzeżone
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
